@@ -20,3 +20,7 @@ up:
 
 down:
 	@$(KLAB) $@
+
+kubeconfig:
+	k3d kubeconfig get $(CLUSTER_NAME) > .kubeconfig
+

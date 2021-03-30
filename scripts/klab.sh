@@ -27,21 +27,7 @@ create() {
   echo ">> Creating cluster..."
 
 	mkdir -p ${SHARED_DATA_PATH}
-
   k3d cluster create --config $configfile
-
-  echo ">> Waiting for cluster to get ready..."
-  sleep 10
-
-  KUBECONFIG="$(k3d get-kubeconfig --name="${CLUSTER_NAME}")"
-  export KUBECONFIG
-
-  echo ">> Your k3s cluster ready"
-  echo ">>"
-  echo ">> Please, expose your KUBECONFIG variable to the current environment"
-  echo ">> export KUBECONFIG=\"\$(k3d get-kubeconfig --name=\"\${CLUSTER_NAME}\")"
-
-  exit 0
 }
 
 delete() {
