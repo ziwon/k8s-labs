@@ -13,14 +13,25 @@ tools: ## Install tools to your local machine
 	curl -sSL https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=$(K3D_TAG) bash
 
 prep:
-	@$(KLAB) $@
+	$(KLAB) $@
 
 up:
-	@$(KLAB) $@
+	$(KLAB) $@
 
 down:
-	@$(KLAB) $@
+	$(KLAB) $@
+
+delete:
+	$(KLAB) $@
 
 kubeconfig:
 	k3d kubeconfig get $(CLUSTER_NAME) > .kubeconfig
 
+helm:
+	helm repo list
+	helm repo add "stable" "https://charts.helm.sh/stable" --force-update
+	helm repo add "common" "https://charts.helm.sh/incubator" --force-update
+	helm repo update
+
+helm-zookeeper:
+	helm install zookeeper common/zookeeper

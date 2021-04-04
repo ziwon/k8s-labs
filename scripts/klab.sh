@@ -32,17 +32,17 @@ create() {
 
 delete() {
   echo ">> Deleting cluster..."
-  k3d cluster delete --name "${CLUSTER_NAME}"
+  k3d cluster delete "${CLUSTER_NAME}"
 }
 
 up() {
   echo ">> Starting cluster..."
-  k3d cluster start --name "${CLUSTER_NAME}"
+  k3d cluster start "${CLUSTER_NAME}"
 }
 
 down() {
   echo ">> Shutdown cluster..."
-  k3d cluster stop --name "${CLUSTER_NAME}"
+  k3d cluster stop "${CLUSTER_NAME}"
 }
 
 launch_docker() {
