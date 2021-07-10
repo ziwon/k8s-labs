@@ -24,57 +24,57 @@ prep() {
 }
 
 create() {
-  echo ">> Creating cluster..."
+	echo ">> Creating cluster..."
 
 	mkdir -p ${SHARED_DATA_PATH}
-  k3d cluster create --config $configfile
+	k3d cluster create --config $configfile
 }
 
 delete() {
-  echo ">> Deleting cluster..."
-  k3d cluster delete "${CLUSTER_NAME}"
+	echo ">> Deleting cluster..."
+	k3d cluster delete "${CLUSTER_NAME}"
 }
 
 up() {
-  echo ">> Starting cluster..."
-  k3d cluster start "${CLUSTER_NAME}"
+	echo ">> Starting cluster..."
+	k3d cluster start "${CLUSTER_NAME}"
 }
 
 down() {
-  echo ">> Shutdown cluster..."
-  k3d cluster stop "${CLUSTER_NAME}"
+	echo ">> Shutdown cluster..."
+	k3d cluster stop "${CLUSTER_NAME}"
 }
 
 launch_docker() {
-  echo ">> Docker is running?.."
-  set +e
-  (docker system info > /dev/null 2>&1)
-  if [ "$?" -ne 0 ]; then
-    open --background -a Docker && echo -n "Docker is starting..";
-    while ! docker system info > /dev/null 2>&1; do echo -e ".\c"; sleep 1; done;
-    echo -e "done.\n"
-  fi
-  set -e
+	echo ">> Docker is running?.."
+	set +e
+	(docker system info > /dev/null 2>&1)
+	if [ "$?" -ne 0 ]; then
+		open --background -a Docker && echo -n "Docker is starting..";
+		while ! docker system info > /dev/null 2>&1; do echo -e ".\c"; sleep 1; done;
+			echo -e "done.\n"
+	fi
+	set -e
 }
 
 case $1 in
 	*prep)
 		prep
 		;;
-  *up)
-    #launch_docker
+	*up)
+		launch_docker
 		create
-    ;;
-  *down)
-    down
-    ;;
-  *create)
-    create
-    ;;
-  *delete)
-    delete
-    ;;
-  *)
-    echo ">> Unknown: $1"; exit 1;
-    ;;
+		;;
+	*down)
+		down
+		;;
+	*create)
+		create
+		;;
+	*delete)
+		delete
+		;;
+	*)
+		echo ">> Unknown: $1"; exit 1;
+		;;
 esac
