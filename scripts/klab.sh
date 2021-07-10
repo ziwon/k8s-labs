@@ -64,6 +64,7 @@ case $1 in
 		;;
 	*up)
 		create
+		up
 		;;
 	*down)
 		down
