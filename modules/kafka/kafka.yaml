@@ -52,7 +52,7 @@ spec:
         - name: KAFKA_ADVERTISED_LISTENERS
           value: PLAINTEXT://_{HOSTNAME_COMMAND}.kafka-headless:9092
         - name: KAFKA_ZOOKEEPER_CONNECT
-          value: zk-cp-zookeeper-0.zk-cp-zookeeper-headless:2181,zk-cp-zookeeper-1.zk-cp-zookeeper-headless:2181,zk-cp-zookeeper-2.zk-cp-zookeeper-headless:2181/kafka
+          value: zookeeper-0.zookeeper-headless:2181,zookeeper-1.zookeeper-headless:2181,zookeeper-2.zookeeper-headless:2181/kafka
         - name: KAFKA_LOG_DIRS
           value: /kafka/kafka-logs
         - name: KAFKA_JMX_PORT
