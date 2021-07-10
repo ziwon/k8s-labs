@@ -59,10 +59,10 @@ launch_docker() {
 
 case $1 in
 	*prep)
+		launch_docker
 		prep
 		;;
 	*up)
-		launch_docker
 		create
 		;;
 	*down)
